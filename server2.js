@@ -65,10 +65,21 @@ let getCourses = (args) => {
   }
 }
 
+let updateCourseTopic = ({ id, topic }) => {
+  coursesData.map(course => {
+    if (course.id === id) {
+      course.topic = topic;
+      return course;
+    }
+  });
+  return coursesData.filter(course => course.id === id)[0];
+}
+
 // Root resolver
 let root = {
   course: getCourse,
-  courses: getCourses
+  courses: getCourses,
+  updateCourseTopic
 };
 
 // Create an Express server and GraphQL endpoint
